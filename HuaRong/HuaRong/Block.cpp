@@ -1,12 +1,13 @@
 #include "StdAfx.h"
 #include "Block.h"
-
 #include "PathManager.h"
 
 std::vector<BLOCK> Resource::m_vecBlocks;
 std::vector<BLOCK> Resource::m_vecOutlet;
 lua_State* Resource::m_L = NULL;
 int Resource::m_nChapter = 0;
+std::map<int, std::wstring> Resource::m_mapChapterNames;
+
 
 Resource::Resource()
 {
@@ -30,7 +31,9 @@ bool Resource::LoadBlocks(std::vector<BLOCK> &vecBlocks, std::vector<BLOCK> &vec
 	lua_register(m_L, "Add", &Resource::Lua_AddHuaRongBlock);
 	lua_register(m_L, "AddOutlet", &Resource::Lua_SetOutlet);
 	lua_register(m_L, "GetChapter", &Resource::Lua_GetChapter);
-	
+	lua_register(m_L, "SetChapterName", &Resource::Lua_SetChapterName);
+	lua_register(m_L, "L", &Resource::Lua_utf8_to_utf16);
+
 	// Çå¿Õ»º´æÊý¾Ý
 	m_vecBlocks.clear();
 	m_vecOutlet.clear();
@@ -78,9 +81,9 @@ std::wstring Resource::StringToWString(std::string str)
 {
 	int nLen = (int)str.length(); 
 	std::wstring wstr;
-	wstr.resize(nLen,L' ');
+	wstr.resize(nLen, 0);
 	
-	MultiByteToWideChar(CP_ACP,0,(LPCSTR)str.c_str(),nLen,(LPWSTR)wstr.c_str(),nLen);
+	MultiByteToWideChar(CP_UTF8,0,(LPCSTR)str.c_str(),nLen,(LPWSTR)wstr.c_str(), str.length());
 
 	return wstr;
 }
@@ -109,6 +112,30 @@ int Resource::Lua_GetChapter(lua_State *L)
 void Resource::SetChapter(int nChapter)
 {
 	m_nChapter = nChapter;
+}
+
+int Resource::Lua_SetChapterName(lua_State *L)
+{
+	int nChapter = lua_tonumber(L, 1);
+	std::wstring wstrName = StringToWString(lua_tostring(L, 2));
+
+	m_mapChapterNames[nChapter] = wstrName;
+
+	return 0;
+}
+
+int Resource::Lua_utf8_to_utf16(lua_State *L)
+{
+	size_t n = 0;  
+	char* str = (char*)luaL_checklstring(L, -1, &n);  
+	if(!str)   
+		return 0;
+
+	std::wstring wstr =StringToWString(str);
+
+ 	lua_pushlstring(L, (char*)wstr.c_str(), 1);  
+
+	return 1;  
 }
 
 

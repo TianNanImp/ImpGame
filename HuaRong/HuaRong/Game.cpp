@@ -27,12 +27,16 @@ bool CGame::Init(HWND hWnd)
 	m_pBitmap = new Gdiplus::Bitmap(600, 800);
 	m_pGraphics = new Graphics(m_pBitmap);
 	m_pDGraphics = new Gdiplus::Graphics(hdc);
-	
+
 	if (!Reset(0))
 	{
 		return false;
 	}
-	
+
+	if (!InitMenu())
+	{
+		return false;
+	}
 	return true;
 }
 
@@ -246,7 +250,7 @@ bool CGame::CouldMove(Direction direc, BLOCK *pBlock)
 		break;
 	case RIGHT:
 		if (pBlock->x+pBlock->width<UNIT_CNT_X && m_Valid[pBlock->x+pBlock->width][pBlock->y]
-		 && m_Valid[pBlock->x+pBlock->width][pBlock->y+pBlock->height-1])
+		&& m_Valid[pBlock->x+pBlock->width][pBlock->y+pBlock->height-1])
 		{
 			return true;
 		}
@@ -285,13 +289,19 @@ bool CGame::MovePoint(Direction direct, int x, int y)
 
 bool CGame::Reset(int nChapter)
 {
+	if (nChapter < 0 || nChapter>300)
+	{
+		return true;
+	}
+
 	Resource::SetChapter(nChapter);
+
 	// 通过lua初始化块信息
 	if (!Resource::LoadBlocks(m_vecBlocks, m_vecOutlet))
 	{
 		return false;
 	}
-	
+
 	// 初始化点阵
 	if (!InitLattice())
 	{
@@ -379,5 +389,23 @@ bool CGame::DrawOutlet()
 	//m_pGraphics->DrawImage(m_vecImages[0], x, y, width, height);
 	m_pGraphics->FillRectangle(&sb, x, y, width, height);
 
+	return true;
+}
+
+bool CGame::InitMenu()
+{
+	HMENU hMenu = GetMenu(m_hWnd);
+
+	//循环创建子菜单
+	HMENU hSubMenu = CreatePopupMenu();
+	for (auto itor=Resource::m_mapChapterNames.begin(); itor!=Resource::m_mapChapterNames.end(); itor++)
+	{
+
+		UINT nSubMenu = WM_USER+itor->first;
+		AppendMenu(hSubMenu, MF_STRING, nSubMenu, itor->second.c_str());
+	}
+	AppendMenu(hMenu, MF_STRING|MF_POPUP, (UINT)hSubMenu, _T("关卡"));
+
+	SetMenu(m_hWnd, hMenu);
 	return true;
 }

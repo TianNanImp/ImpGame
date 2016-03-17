@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{523ba46f-f727-4c5e-90df-78ae11cc7617}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -21,6 +24,9 @@
     </None>
     <None Include="HuaRong.ico">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\bin\dat\HuaRong\init.lua">
+      <Filter>script</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

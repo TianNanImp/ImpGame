@@ -62,6 +62,9 @@ private:
 	// 初始化元素
 	bool InitSpirit();
 
+	// 初始化菜单
+	bool InitMenu();
+
 	// 绘制出口
 	bool DrawOutlet();
 

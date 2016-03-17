@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <string>
+#include <map>
 
 extern "C"  
 {  
@@ -39,7 +40,16 @@ public:
 	// 获得当前关卡
 	static int Lua_GetChapter(lua_State *L);
 
+	// 设置关卡名
+	static int Lua_SetChapterName(lua_State *L);
+
+	// 允许lua使用unicode
+	static int Lua_utf8_to_utf16(lua_State *L);
+
 	static std::wstring StringToWString(std::string str);
+
+public:
+	static std::map<int, std::wstring> m_mapChapterNames;
 
 private:
 	static std::vector<BLOCK> m_vecBlocks;

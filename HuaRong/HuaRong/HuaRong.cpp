@@ -160,18 +160,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		wmId    = LOWORD(wParam);
 		wmEvent = HIWORD(wParam);
 		// Parse the menu selections:
+		g_game.Reset(wmId - WM_USER);
 		switch (wmId)
 		{
-		case IDM_CHAPTER1:
-		case IDM_CHAPTER2:
-		case IDM_CHAPTER3:
-		case IDM_CHAPTER4:
-		case IDM_CHAPTER5:
-		case IDM_CHAPTER6:
-		case IDM_CHAPTER7:
-			//DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-			g_game.Reset(wmId-IDM_CHAPTER1);
-			break;
 		case IDM_EXIT:
 			DestroyWindow(hWnd);
 			break;

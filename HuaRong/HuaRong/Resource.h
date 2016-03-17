@@ -6,24 +6,18 @@
 #define IDS_APP_TITLE			103
 
 #define IDR_MAINFRAME			128
-#define IDD_HUARONG_DIALOG	102
+#define IDD_HUARONG_DIALOG		102
 #define IDD_ABOUTBOX			103
-//#define IDM_CHAPTER1				104
+#define IDM_CHAPTER1			104
 #define IDM_EXIT				105
-#define IDI_HUARONG			107
+#define IDI_HUARONG				107
 #define IDI_SMALL				108
-#define IDC_HUARONG			109
+#define IDC_HUARONG				109
 #define IDC_MYICON				2
+
 #ifndef IDC_STATIC
 #define IDC_STATIC				-1
 
-#define IDM_CHAPTER1				110
-#define IDM_CHAPTER2				111
-#define IDM_CHAPTER3				112
-#define IDM_CHAPTER4				113
-#define IDM_CHAPTER5				114
-#define IDM_CHAPTER6				115
-#define IDM_CHAPTER7				116
 #endif
 // Next default values for new objects
 //
@@ -37,3 +31,6 @@
 #define _APS_NEXT_SYMED_VALUE		110
 #endif
 #endif
+
+
+// WM_USER - WM_USER+200 为自定义菜单
