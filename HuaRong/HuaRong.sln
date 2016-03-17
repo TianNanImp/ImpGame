@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HuaRong", "HuaRong\HuaRong.vcxproj", "{917DDE2D-9931-4E7A-9468-2B25D7F48806}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lua532", "Lua532\Lua532.vcxproj", "{1994C52D-532E-446E-9D27-EA4070243845}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{917DDE2D-9931-4E7A-9468-2B25D7F48806}.Debug|Win32.ActiveCfg = Debug|Win32
+		{917DDE2D-9931-4E7A-9468-2B25D7F48806}.Debug|Win32.Build.0 = Debug|Win32
+		{917DDE2D-9931-4E7A-9468-2B25D7F48806}.Release|Win32.ActiveCfg = Release|Win32
+		{917DDE2D-9931-4E7A-9468-2B25D7F48806}.Release|Win32.Build.0 = Release|Win32
+		{1994C52D-532E-446E-9D27-EA4070243845}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1994C52D-532E-446E-9D27-EA4070243845}.Debug|Win32.Build.0 = Debug|Win32
+		{1994C52D-532E-446E-9D27-EA4070243845}.Release|Win32.ActiveCfg = Release|Win32
+		{1994C52D-532E-446E-9D27-EA4070243845}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
