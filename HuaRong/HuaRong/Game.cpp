@@ -302,6 +302,14 @@ bool CGame::Reset(int nChapter)
 		return false;
 	}
 
+	TCHAR szTitle[100];
+	GetWindowText(m_hWnd, szTitle, 100);
+	wstring strTitle = szTitle;
+	strTitle += _T("-");
+	strTitle += Resource::m_mapChapterNames[nChapter].c_str();
+	SetWindowText(m_hWnd, strTitle.c_str());
+
+
 	// ³õÊ¼»¯µãÕó
 	if (!InitLattice())
 	{
@@ -387,7 +395,7 @@ bool CGame::DrawOutlet()
 
 	//m_pGraphics->FillRectangle(&sb, x, y, width, height);
 	//m_pGraphics->DrawImage(m_vecImages[0], x, y, width, height);
-	m_pGraphics->FillRectangle(&sb, x, y, width, height);
+	m_pGraphics->FillRectangle(&sb, y, x+UNIT_WIDTH, height, width);
 
 	return true;
 }
