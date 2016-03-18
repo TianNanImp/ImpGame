@@ -302,13 +302,9 @@ bool CGame::Reset(int nChapter)
 		return false;
 	}
 
-	TCHAR szTitle[100];
-	GetWindowText(m_hWnd, szTitle, 100);
-	wstring strTitle = szTitle;
-	strTitle += _T("-");
+	wstring strTitle = _T("华容道-");
 	strTitle += Resource::m_mapChapterNames[nChapter].c_str();
 	SetWindowText(m_hWnd, strTitle.c_str());
-
 
 	// 初始化点阵
 	if (!InitLattice())
